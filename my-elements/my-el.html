@@ -1,0 +1,55 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+
+<dom-module id="my-el">
+    <template>
+        <style>
+            :host{
+                display:block;
+            }
+        </style>
+        <h1>Hello [[name]] [[lastName]] [[salary]] [[packagename]] book:[[book.name]]</h1>
+
+        <h2> <slot></slot> </h2>
+        <h3><slot name="date"></slot></h3>
+    </template>
+    <script>
+        class HelloWorld extends Polymer.Element {
+
+            static get is() {
+                return 'my-el'
+            }
+
+            static get properties() {
+                return {
+                    name: String,
+                    lastName: String,
+                    packagename: String,
+                    salary: {
+                        type: Number,
+                        value: () => 290
+
+                    },
+                    book: {
+                        type: Object,
+                        notify: true,
+                        value: function() {
+                            return {}
+                        }
+                    },
+                    counter: {
+                        readOnly: true,
+                        type: Number,
+                        notify: true
+                    }
+                }
+            }
+
+            // ready() {
+            //     //this.textContent = "hello i am polymer"
+            // }
+        }
+        window.customElements.define(HelloWorld.is, HelloWorld)
+    </script>
+
+</dom-module>
